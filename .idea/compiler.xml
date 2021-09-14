@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pro-server" />
+        <module name="chenx-pro-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="chenx-pro-server" target="1.8" />
       <module name="pro-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="chenx-pro-server" options="-parameters" />
       <module name="pro-server" options="-parameters" />
     </option>
   </component>
