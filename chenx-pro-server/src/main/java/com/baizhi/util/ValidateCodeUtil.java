@@ -1,4 +1,4 @@
-package com.education.utils;
+package com.baizhi.util;
 
 import com.alibaba.druid.util.Base64;
 
@@ -17,7 +17,7 @@ public class ValidateCodeUtil {
  
     private static int width = 80;     //图片宽度
     private static int height = 34;    //图片高度
-    private static int StringNum = 4;  //字符的数量
+    private static int StringNum = 1;  //字符的数量
     private static int lineSize = 40;  //干扰线数量
  
  

@@ -1,4 +1,4 @@
-package com.education.utils;
+package com.baizhi.util;
 
 import org.springframework.util.DigestUtils;
 
@@ -40,5 +40,14 @@ public class Md5Utils {
             sb.append(code[new Random().nextInt(code.length)]);
         }
         return sb.toString();
+    }
+    public static void main(String[] args) {
+
+        // 获取随机盐
+        String salt = getSalt(8);
+        System.out.println(salt);
+
+        String md5Code = Md5Utils.getMd5Code("123456"+salt);
+        System.out.println(md5Code);
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CateGoryDao"><!--namespace 后写所实现接口的全类名，以 . 分开-->
+    <select id="queryAll" resultType="CateGory">
+        select id,name from category
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from category where id = #{id}
+    </delete>
+    <update id="update" parameterType="CateGory">
+        update category set name = #{name} where id = #{id}
+    </update>
+    <insert id="insert" parameterType="CateGory">
+        insert into category(name) values(#{name})
+    </insert>
+    <!--附加一个  在xml文件里特殊符号，即< > <= ...当作普通的String语句执行，没有对比功能
+        需要用到<![CDATA[
+          select * from student where age > #{age}
+        ]]
+        <![CDATA[xxxxx]]
+    -->
+</mapper>
