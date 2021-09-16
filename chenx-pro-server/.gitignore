@@ -32,7 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 .mvnw.cmd/
-.mvn
+.mvn/**
 chenx-pro-server.iml
 HELP.md
+pom.xml
+target
 pom.xml
