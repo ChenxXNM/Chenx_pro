@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace=""><!--namespace 后写所实现接口的全类名，以 . 分开-->
-    <select id="" resultType="">
-        
+<mapper namespace="com.baizhi.dao.ProductDao"><!--namespace 后写所实现接口的全类名，以 . 分开-->
+    <sql id="attribute">
+        id,name, course_img as courseImg,course_type as courseType ,
+        brief,level,pub_date as pubDate ,
+        period,status,students,lessons,pub_lessons as pubLessons  ,
+        price,course_category_id as courseCategoryId  ,teacher_id as teacherId
+    </sql>
+    <select id="queryAll" resultType="Product">
+       select
+        <include refid="attribute"/>
+        from bz_course
+        <where>
+            <if test='searValue!=null'>name like #{searValue}</if>
+        </where>
+        limit #{begin},#{row}
     </select>
-    <!--附加一个  在xml文件里特殊符号，即< > <= ...当作普通的String语句执行，没有对比功能
+    <delete id="delete" parameterType="int">
+        delete from  bz_course where id = #{id}
+    </delete>
+    <insert id="insert" parameterType="Product">
+        insert into bz_course
+            (name,course_img,course_type,brief,
+             level,pub_date,period,status,students,lessons,
+             pub_lessons,price,course_category_id,teacher_id)
+        values (#{name},#{courseImg},#{courseType},
+                #{brief},#{level},#{pubDate},#{period},
+                #{status},#{students},#{lessons},#{pubLessons},
+                #{price},#{courseCategoryId},#{teacherId})
+    </insert>
+    <update id="update" parameterType="Product">
+        update bz_course set
+        name = #{name},
+        course_img = #{courseImg},
+        course_type = #{courseType},
+        brief = #{brief},
+        level = #{level},
+        pub_date = #{pubDate},
+        period = #{period},
+        status = #{status},
+        students = #{students},
+        lessons = #{lessons},
+        pub_lessons = #{pubLessons},
+        price = #{price},
+        course_category_id = #{courseCategoryId},
+        teacher_id = #{teacherId}
+        where id = #{id}
+    </update>
+    <select id="getTotal" resultType="int">
+        select count(id) from bz_course
+    </select>
+     <!--附加一个  在xml文件里特殊符号，即< > <= ...当作普通的String语句执行，没有对比功能
         需要用到<![CDATA[
           select * from student where age > #{age}
         ]]
